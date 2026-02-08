@@ -51,8 +51,9 @@ function validateOptions(options: InitOptions): void {
     throw new Error('Manifest filename cannot be empty');
   }
 
-  if (!manifest.endsWith('.yaml') && !manifest.endsWith('.yml')) {
-    throw new Error('Manifest filename must end with .yaml or .yml');
+  const isValidExtension = manifest.endsWith('.json') || manifest.endsWith('.yaml') || manifest.endsWith('.yml');
+  if (!isValidExtension) {
+    throw new Error('Manifest filename must end with .json, .yaml, or .yml');
   }
 
   if (manifest.includes('/') || manifest.includes('\\')) {
@@ -72,7 +73,7 @@ export async function init(options: InitOptions): Promise<void> {
   const dir = options.dir || await prompt('Directory name for rule documents', 'vibes');
 
   // Prompt for manifest filename if not provided
-  const manifest = options.manifest || await prompt('Manifest filename', 'vibes.yaml');
+  const manifest = options.manifest || await prompt('Manifest filename', 'vibes.json');
 
   // Validate inputs
   validateOptions({ force, minimal, dir, manifest });
@@ -88,7 +89,7 @@ export async function init(options: InitOptions): Promise<void> {
   // Create or skip manifest
   if (!manifestExists || force) {
     try {
-      const manifestContent = generateManifest({ dir, minimal });
+      const manifestContent = generateManifest({ dir, minimal, filename: manifest });
       await writeFile(manifestPath, manifestContent, 'utf-8');
       results.push({
         path: manifest,

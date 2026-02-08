@@ -5,6 +5,24 @@ All notable changes to ai-vibes will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-02-07
+
+### Added
+
+- **JSON format support** - Manifest files now support `.json` extension for better IDE experience
+- **Clickable file paths** - JSON format provides clickable paths in VS Code and other editors
+- **Better autocomplete** - JSON Schema support enables autocomplete and validation in modern editors
+
+### Changed
+
+- **Default format is now JSON** - Interactive prompt defaults to `vibes.json` instead of `vibes.yaml`
+- **Format auto-detection** - Automatically generates JSON or YAML based on file extension
+
+### Maintained
+
+- **Full YAML support** - YAML format (`.yaml` or `.yml`) continues to work perfectly
+- **Backward compatibility** - Existing YAML manifests are fully supported
+
 ## [1.0.0] - 2026-02-07
 
 ### Added

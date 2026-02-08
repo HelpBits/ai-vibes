@@ -27,10 +27,13 @@ npm install -g ai-vibes
 npx ai-vibes init
 
 # Or skip the prompts with flags
-npx ai-vibes init --dir vibes --manifest vibes.yaml
+npx ai-vibes init --dir vibes --manifest vibes.json
 
 # Minimal mode - 3 essential files (recommended)
 npx ai-vibes init --minimal
+
+# YAML format (if preferred)
+npx ai-vibes init --manifest vibes.yaml
 
 # Overwrite existing files
 npx ai-vibes init --force
@@ -38,8 +41,10 @@ npx ai-vibes init --force
 
 This creates:
 
-- `vibes.yaml` - Manifest file
+- `vibes.json` - Manifest file (JSON format for better IDE support)
 - `vibes/` - Directory with rule documents
+
+**Note:** Use `--manifest vibes.yaml` if you prefer YAML format.
 
 ## What You Get
 
@@ -71,30 +76,35 @@ Once set up, reference your guidelines when using AI tools:
 **GitHub Copilot:**
 
 ```
-@workspace Follow the guidelines in vibes.yaml
+@workspace Follow the guidelines in vibes.json
 ```
 
 **Cursor:**
 
 ```
-Create an API endpoint following the guidelines in vibes.yaml
+Create an API endpoint following the guidelines in vibes.json
 ```
 
 **Claude/ChatGPT:**
 
 ```bash
-cat vibes.yaml vibes/*.md
+cat vibes.json vibes/*.md
 # Paste into your conversation
 ```
+
+**Note:** File paths in JSON are clickable in most editors for better navigation.
 
 ### Updating Guidelines
 
 ```bash
+# Edit the manifest (JSON format with clickable paths!)
+vim vibes.json
+
 # Edit a rule
 vim vibes/security.md
 
 # Commit changes
-git add vibes/
+git add vibes.json vibes/
 git commit -m "docs: update security guidelines for API keys"
 ```
 
@@ -107,7 +117,7 @@ Options:
   --minimal              3 essential files instead of 11
   --force                Overwrite existing files
   --dir <name>           Directory name (interactive prompt if not provided)
-  --manifest <filename>  Manifest filename (interactive prompt if not provided)
+  --manifest <filename>  Manifest filename - .json, .yaml, or .yml (default: vibes.json)
   -h, --help             Display help
 ```
 
@@ -115,15 +125,18 @@ Options:
 
 ```
 Directory name for rule documents (default: vibes):
-Manifest filename (default: vibes.yaml):
+Manifest filename (default: vibes.json):
 ```
 
 ## What It Does
 
-✅ Creates `vibes.yaml` manifest  
+✅ Creates `vibes.json` manifest (JSON format for better IDE support)  
 ✅ Creates rule documents in Markdown  
 ✅ Provides starter templates  
+✅ Clickable file paths in JSON for easy navigation  
 ✅ Gives you a place to say "No, AI, we don't do that here"
+
+**Supports both JSON and YAML** - use `--manifest vibes.yaml` if you prefer YAML
 
 ## What It Doesn't Do
 

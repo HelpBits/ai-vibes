@@ -8,7 +8,7 @@ const program = new Command();
 program
   .name('ai-vibes')
   .description('Initialize a standard, repo-local AI steering manifest and rule documents')
-  .version('1.0.0');
+  .version('1.1.0');
 
 program
   .command('init')

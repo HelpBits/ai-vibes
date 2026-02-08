@@ -8,6 +8,7 @@
 export interface ManifestOptions {
   dir: string;
   minimal: boolean;
+  filename?: string;
 }
 
 export interface RuleDefinition {
@@ -188,8 +189,13 @@ function loadTemplate(filename: string): string {
 // PUBLIC API
 // ============================================================================
 
+function detectManifestFormat(filename: string): 'json' | 'yaml' {
+  return filename.endsWith('.json') ? 'json' : 'yaml';
+}
+
 export function generateManifest(options: ManifestOptions): string {
-  const { dir, minimal } = options;
+  const { dir, minimal, filename } = options;
+  const format = filename ? detectManifestFormat(filename) : 'json';
   
   // Filter rules based on minimal flag
   const activeRules = RULE_DEFINITIONS.filter(rule => 
@@ -218,6 +224,32 @@ export function generateManifest(options: ManifestOptions): string {
     })
     .join('\n');
 
+  if (format === 'json') {
+    const manifest = {
+      version: 1,
+      about: {
+        name: "Repo Vibes",
+        description: "How AIs should work in this repo"
+      },
+      rules: Object.fromEntries(
+        activeRules.map(rule => [rule.id, `${dir}/${rule.filename}`])
+      ),
+      order: activeRules.map(rule => rule.id),
+      modes: Object.fromEntries(
+        modeNames.map(modeName => [
+          modeName,
+          {
+            include: activeRules
+              .filter(rule => rule.modes.includes(modeName))
+              .map(rule => rule.id)
+          }
+        ])
+      )
+    };
+    return JSON.stringify(manifest, null, 2);
+  }
+
+  // YAML format
   return `version: 1
 
 about:
