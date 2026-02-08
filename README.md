@@ -371,4 +371,4 @@ MIT
 ---
 
 **Repository:** https://github.com/HelpBits/ai-vibes  
-**Version:** 1.0.0
+**Version:** 1.1.1
