@@ -1,0 +1,18 @@
+# Source files
+src/
+tsconfig.json
+tsup.config.json
+
+# Tests (if added later)
+test/
+*.test.ts
+*.spec.ts
+
+# Dev files
+.gitignore
+.vscode/
+.idea/
+
+# Build artifacts (except dist which is needed)
+*.log
+npm-debug.log*

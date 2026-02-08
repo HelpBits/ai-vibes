@@ -1,0 +1,44 @@
+{
+  "name": "ai-vibes",
+  "version": "1.0.0",
+  "description": "A tiny CLI that initializes a standard, repo-local AI steering manifest and rule documents",
+  "type": "module",
+  "main": "dist/cli.js",
+  "bin": {
+    "ai-vibes": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "generate": "node scripts/generate-templates.js",
+    "prebuild": "npm run generate",
+    "build": "tsup src/cli.ts --format esm --clean",
+    "dev": "tsup src/cli.ts --format esm --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "ai",
+    "llm",
+    "rules",
+    "guidelines",
+    "code-quality",
+    "conventions",
+    "cli"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "commander": "^12.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3"
+  }
+}

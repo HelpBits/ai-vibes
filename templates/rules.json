@@ -1,0 +1,70 @@
+{
+  "rules": [
+    {
+      "id": "security",
+      "filename": "security.md",
+      "minimal": true,
+      "modes": ["codegen", "review", "test", "docs", "ops"]
+    },
+    {
+      "id": "unit-tests",
+      "filename": "unit-tests.md",
+      "minimal": true,
+      "modes": ["codegen", "test"]
+    },
+    {
+      "id": "naming",
+      "filename": "naming.md",
+      "minimal": true,
+      "modes": ["codegen", "review"]
+    },
+    {
+      "id": "architecture",
+      "filename": "architecture.md",
+      "minimal": false,
+      "modes": ["codegen", "review", "ops"]
+    },
+    {
+      "id": "performance",
+      "filename": "performance.md",
+      "minimal": false,
+      "modes": ["codegen", "review"]
+    },
+    {
+      "id": "code-review",
+      "filename": "code-review.md",
+      "minimal": false,
+      "modes": ["review"]
+    },
+    {
+      "id": "error-handling",
+      "filename": "error-handling.md",
+      "minimal": false,
+      "modes": ["codegen", "review"]
+    },
+    {
+      "id": "documentation",
+      "filename": "documentation.md",
+      "minimal": false,
+      "modes": ["codegen", "docs"]
+    },
+    {
+      "id": "accessibility",
+      "filename": "accessibility.md",
+      "minimal": false,
+      "modes": ["codegen", "review"]
+    },
+    {
+      "id": "api-design",
+      "filename": "api-design.md",
+      "minimal": false,
+      "modes": ["codegen", "review", "ops"]
+    },
+    {
+      "id": "git-workflow",
+      "filename": "git-workflow.md",
+      "minimal": false,
+      "modes": ["docs", "ops"]
+    }
+  ]
+}
