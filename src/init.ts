@@ -145,8 +145,9 @@ export async function init(options: InitOptions): Promise<void> {
 
   // Print sponsor message on success
   if (results.some(r => r.status === 'created' || r.status === 'overwritten')) {
-    console.log('\nIf this saves your team time, consider sponsoring the project:');
-    console.log('https://github.com/sponsors/ai-vibes');
+    console.log('\n✨ Enjoying ai-vibes? Know a better format for steering files? Have ideas?');
+    console.log('   Contributions welcome! Or just buy me a coffee ☕');
+    console.log('   https://www.buymeacoffee.com/helpbits');
   }
 }
 

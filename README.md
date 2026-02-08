@@ -147,6 +147,22 @@ Manifest filename (default: vibes.json):
 
 ai-vibes is intentionally minimal - it scaffolds the structure, you customize the content. Think of it as the starter pack for your AI's training montage.
 
+## Contributing
+
+💡 **Know a better format for steering files?** Have ideas to improve the templates? Found a bug?
+
+Contributions are welcome! Whether it's:
+
+- 🐛 Bug fixes
+- ✨ New template ideas
+- 📝 Better examples
+- 🎨 Format improvements
+- ☕ Or just buying me a coffee
+
+Check out [CONTRIBUTING.md](CONTRIBUTING.md) or open an issue.
+
+**Liked the project?** [Buy me a coffee ☕](https://www.buymeacoffee.com/helpbits)
+
 ## How It Works
 
 ```mermaid
