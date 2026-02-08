@@ -1,77 +1,50 @@
 # ai-vibes
 
-> A tiny CLI that scaffolds AI steering rules for your codebase.
+> Give your AI the vibe check it deserves.
 
-**The problem:** Your AI assistant writes amazing code... that looks nothing like the rest of your codebase. 🤦
+Your AI writes amazing code. Too bad it looks nothing like the rest of your codebase. 🤦
 
-**The solution:** Give your AI the vibe check it deserves. Define your team's standards once, and let every AI assistant follow them.
+**ai-vibes** scaffolds AI steering rules in 30 seconds. Define your team's standards once, every AI follows them. Think `.editorconfig` but for AI behavior.
 
-Think of it as `.editorconfig` but for AI behavior. Or a style guide that AIs actually read.
-
-## Install
+## Quick Start
 
 ```bash
-# No installation needed - use npx
 npx ai-vibes init
+```
 
-# Or install globally
-npm install -g ai-vibes
+That's it. Answer two prompts (or press Enter). You get a `vibes.json` manifest and markdown rule files.
+
+**Want minimal?** (3 files instead of 11)
+
+```bash
+npx ai-vibes init --minimal
+```
+
+**Prefer YAML?**
+
+```bash
+npx ai-vibes init --manifest vibes.yaml
 ```
 
 **Requirements:** Node.js 18+
 
-## Usage
-
-```bash
-# Interactive mode - prompts you for directory and manifest names
-npx ai-vibes init
-
-# Or skip the prompts with flags
-npx ai-vibes init --dir vibes --manifest vibes.json
-
-# Minimal mode - 3 essential files (recommended)
-npx ai-vibes init --minimal
-
-# YAML format (if preferred)
-npx ai-vibes init --manifest vibes.yaml
-
-# Overwrite existing files
-npx ai-vibes init --force
-```
-
-This creates:
-
-- `vibes.json` - Manifest file (JSON format for better IDE support)
-- `vibes/` - Directory with rule documents
-
-**Note:** Use `--manifest vibes.yaml` if you prefer YAML format.
+> 🎉 **Saved you 30 minutes?** This tool is free, but coffee isn't. If ai-vibes made your day better, [buy me a coffee ☕](https://www.buymeacoffee.com/helpbits). I promise to use it for actual coffee (or debugging at 3am, which requires coffee).
 
 ## What You Get
 
-### Minimal Mode (3 files)
+**Minimal mode** (3 files):
 
-- `security.md` - Never commit secrets, validate inputs
-- `unit-tests.md` - Test behavior, cover edge cases
-- `naming.md` - Consistent naming conventions
+- 🔒 `security.md` - Never commit secrets, validate inputs
+- ✅ `unit-tests.md` - Test behavior, cover edge cases
+- 📝 `naming.md` - Consistent naming conventions
 
-### Full Mode (11 files)
+**Full mode** (11 files) - adds:
 
-Everything in minimal, plus:
+- Architecture, Performance, Code Review, Error Handling, Documentation, Accessibility, API Design, Git Workflow
 
-- `architecture.md` - Follow existing patterns
-- `performance.md` - Optimization guidelines
-- `code-review.md` - Review standards
-- `error-handling.md` - Error patterns
-- `documentation.md` - Doc standards
-- `accessibility.md` - a11y guidelines
-- `api-design.md` - RESTful conventions
-- `git-workflow.md` - Commit standards
+All templates are **starting points**. Edit them to match your team's actual standards.
 
-## Daily Usage
-
-### Working with AI Assistants
-
-Once set up, reference your guidelines when using AI tools:
+## How to Use With AI
 
 **GitHub Copilot:**
 
@@ -79,10 +52,10 @@ Once set up, reference your guidelines when using AI tools:
 @workspace Follow the guidelines in vibes.json
 ```
 
-**Cursor:**
+**Cursor/Windsurf:**
 
 ```
-Create an API endpoint following the guidelines in vibes.json
+Create an API endpoint following vibes.json
 ```
 
 **Claude/ChatGPT:**
@@ -92,283 +65,188 @@ cat vibes.json vibes/*.md
 # Paste into your conversation
 ```
 
-**Note:** File paths in JSON are clickable in most editors for better navigation.
+**Pro tip:** File paths in JSON are clickable in VS Code. No more hunting for files.
 
-### Updating Guidelines
+## What It Does
+
+✅ Creates `vibes.json` manifest (clickable paths in VS Code!)  
+✅ Creates rule documents in Markdown  
+✅ Gives you a place to say "No, AI, we don't do that here"
+
+Supports both JSON and YAML formats.
+
+## What It Doesn't Do
+
+❌ Validate rules (it's not a linter)  
+❌ Enforce rules (you still need code review)  
+❌ Integrate with AI tools directly (bring your own AI)  
+❌ Make coffee ☕
+
+## Why This Exists
+
+Every AI can read Markdown. Not every AI follows your coding standards.
+
+This tool gives you a single place to define those standards. Edit the templates to match your team's reality, commit them to version control, and reference them when working with any AI assistant.
+
+It's intentionally minimal. You write the rules, AI follows them.
+
+## FAQ
+
+**Do I need to install this?**  
+No. `npx ai-vibes init` runs without installing. One command, zero commitment.
+
+**Can I customize the templates?**  
+That's literally the entire point. These are starting points, not commandments carved in stone.
+
+**Should I commit these files?**  
+Yes! Version control = time travel. Future-you will thank past-you for documenting these decisions.
+
+**Does this work with [my AI tool]?**  
+If your AI can read Markdown (spoiler: they all can), then yes. Tool-agnostic by design.
+
+**Why JSON by default?**  
+Clickable file paths in VS Code. But YAML works too if you're into that.
+
+**Will you actually use my coffee money for coffee?**  
+Yes. And open source development. Which requires coffee. It's a virtuous cycle.
+
+## Buy Me a Coffee? ☕
+
+**Plot twist:** This tool saved you from writing 11 markdown files by hand.
+
+That's at least 30 minutes you didn't spend googling "security best practices example markdown."
+
+If ai-vibes made your life easier:
+
+- ☕ [Buy me a coffee](https://www.buymeacoffee.com/helpbits) - Fuels more open source
+- ⭐ Star the repo - Makes me unreasonably happy
+- 🐦 Share it - Help other devs suffering from inconsistent AI code
+
+No pressure though. The tool is free forever. Unlike coffee. Which is why I'm asking. 😅
+
+## Contributing
+
+Know a better format? Have ideas? Found a bug?
+
+Contributions welcome:
+
+- 🐛 Bug fixes
+- ✨ New template ideas
+- 📝 Better examples
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) or open an issue.
+
+---
+
+## Reference
+
+<details>
+<summary><b>All CLI Options</b></summary>
 
 ```bash
-# Edit the manifest (JSON format with clickable paths!)
-vim vibes.json
-
-# Edit a rule
-vim vibes/security.md
-
-# Commit changes
-git add vibes.json vibes/
-git commit -m "docs: update security guidelines for API keys"
-```
-
-## CLI Options
-
-```
 npx ai-vibes init [options]
 
 Options:
   --minimal              3 essential files instead of 11
   --force                Overwrite existing files
-  --dir <name>           Directory name (interactive prompt if not provided)
-  --manifest <filename>  Manifest filename - .json, .yaml, or .yml (default: vibes.json)
+  --dir <name>           Directory name (default: vibes)
+  --manifest <filename>  Manifest filename (default: vibes.json)
   -h, --help             Display help
 ```
 
-**Interactive Mode:** If you don't provide `--dir` or `--manifest`, you'll be prompted:
+</details>
 
-```
-Directory name for rule documents (default: vibes):
-Manifest filename (default: vibes.json):
-```
+<details>
+<summary><b>What Gets Created</b></summary>
 
-## What It Does
-
-✅ Creates `vibes.json` manifest (JSON format for better IDE support)  
-✅ Creates rule documents in Markdown  
-✅ Provides starter templates  
-✅ Clickable file paths in JSON for easy navigation  
-✅ Gives you a place to say "No, AI, we don't do that here"
-
-**Supports both JSON and YAML** - use `--manifest vibes.yaml` if you prefer YAML
-
-## What It Doesn't Do
-
-❌ Does not validate rules (it's not a linter, calm down)  
-❌ Does not enforce rules (you still need code review)  
-❌ Does not integrate with AI tools directly (BYOAI - Bring Your Own AI)  
-❌ Does not make coffee ☕
-
-ai-vibes is intentionally minimal - it scaffolds the structure, you customize the content. Think of it as the starter pack for your AI's training montage.
-
-## Contributing
-
-💡 **Know a better format for steering files?** Have ideas to improve the templates? Found a bug?
-
-Contributions are welcome! Whether it's:
-
-- 🐛 Bug fixes
-- ✨ New template ideas
-- 📝 Better examples
-- 🎨 Format improvements
-- ☕ Or just buying me a coffee
-
-Check out [CONTRIBUTING.md](CONTRIBUTING.md) or open an issue.
-
-**Liked the project?** [Buy me a coffee ☕](https://www.buymeacoffee.com/helpbits)
-
-## How It Works
-
-```mermaid
-graph TD
-    A[🚀 Run: npx ai-vibes init] --> B[📄 Creates vibes.yaml manifest]
-    B --> C[📁 Creates vibes/ directory with rule files]
-    C --> D[✏️ You customize the markdown files]
-    D --> E[🤖 Share with AI assistants]
-    E --> F[✨ AI follows your team's standards]
-
-    style A fill:#4CAF50,stroke:#2E7D32,color:#fff
-    style B fill:#2196F3,stroke:#1565C0,color:#fff
-    style C fill:#2196F3,stroke:#1565C0,color:#fff
-    style D fill:#FF9800,stroke:#E65100,color:#fff
-    style E fill:#9C27B0,stroke:#6A1B9A,color:#fff
-    style F fill:#4CAF50,stroke:#2E7D32,color:#fff
-```
-
-**The magic:** The manifest (`vibes.yaml`) acts as a single source of truth that AI tools can read to discover all your coding standards in one place.
-
-## Setup Guide
-
-### Step-by-Step Setup
-
-**1. Navigate to your project**
-
-```bash
-cd /path/to/your-project
-```
-
-**2. Run ai-vibes**
-
-```bash
-npx ai-vibes init
-```
-
-**3. Answer the prompts** (or press Enter for defaults)
-
-```
-Directory name for rule documents (default: vibes):
-Manifest filename (default: vibes.yaml):
-```
-
-**4. Choose your mode**
-
-- Want all 11 templates? Just press Enter
-- Want minimal (3 files)? Run with `--minimal` flag
-
-**5. Verify the files were created**
-
-```bash
-ls vibes/           # Shows your rule files
-cat vibes.yaml      # Shows your manifest
-```
-
-**6. Customize for your team**
-
-Edit the generated files to match your standards:
-
-```bash
-# Add your security requirements
-vim vibes/security.md
-
-# Define your naming conventions
-vim vibes/naming.md
-
-# Set testing expectations
-vim vibes/unit-tests.md
-```
-
-**7. Commit to version control**
-
-```bash
-git add vibes.yaml vibes/
-git commit -m "docs: add AI coding guidelines"
-git push
-```
-
-**8. Share with your AI assistant**
-
-Now whenever you use an AI tool, reference your guidelines:
-
-```
-@workspace Follow the guidelines in vibes.yaml
-```
-
-**9. Keep it updated**
-
-As your team's practices evolve, update the markdown files:
-
-```bash
-vim vibes/security.md    # Add new security pattern
-git commit -am "docs: add OAuth2 security requirements"
-```
-
-### What Gets Created
-
-**Minimal Mode** (`--minimal`):
+**Minimal mode:**
 
 ```
 your-project/
-├── vibes.yaml          # Manifest with 3 rules
+├── vibes.json          # Manifest with 3 rules
 └── vibes/
-    ├── security.md     # Security guidelines
-    ├── unit-tests.md   # Testing standards
-    └── naming.md       # Naming conventions
+    ├── security.md
+    ├── unit-tests.md
+    └── naming.md
 ```
 
-**Full Mode** (default):
+**Full mode:**
 
 ```
 your-project/
-├── vibes.yaml              # Manifest with 11 rules
+├── vibes.json          # Manifest with 11 rules
 └── vibes/
-    ├── security.md         # Security guidelines
-    ├── unit-tests.md       # Testing standards
-    ├── naming.md           # Naming conventions
-    ├── architecture.md     # Architecture patterns
-    ├── performance.md      # Performance guidelines
-    ├── code-review.md      # Review standards
-    ├── error-handling.md   # Error patterns
-    ├── documentation.md    # Documentation standards
-    ├── accessibility.md    # Accessibility guidelines
-    ├── api-design.md       # API conventions
-    └── git-workflow.md     # Git standards
+    ├── security.md
+    ├── unit-tests.md
+    ├── naming.md
+    ├── architecture.md
+    ├── performance.md
+    ├── code-review.md
+    ├── error-handling.md
+    ├── documentation.md
+    ├── accessibility.md
+    ├── api-design.md
+    └── git-workflow.md
 ```
 
-### Automation
+</details>
 
-Skip the prompts for CI/CD or scripts:
+<details>
+<summary><b>Manifest Format Example</b></summary>
 
-```bash
-npx ai-vibes init --dir .github/ai-rules --manifest ai-rules.yaml --minimal --force
+```json
+{
+  "version": 1,
+  "about": {
+    "name": "Repo Vibes",
+    "description": "How AIs should work in this repo"
+  },
+  "rules": {
+    "security": "vibes/security.md",
+    "unit-tests": "vibes/unit-tests.md",
+    "naming": "vibes/naming.md"
+  },
+  "order": ["security", "unit-tests", "naming"],
+  "modes": {
+    "codegen": {
+      "include": ["security", "unit-tests", "naming"]
+    },
+    "review": {
+      "include": ["security", "naming"]
+    }
+  }
+}
 ```
 
-## Manifest Format
+</details>
 
-`vibes.yaml` maps rule IDs to file paths:
+<details>
+<summary><b>More Examples</b></summary>
 
-```yaml
-version: 1
-
-rules:
-  security: "vibes/security.md"
-  unit-tests: "vibes/unit-tests.md"
-  naming: "vibes/naming.md"
-
-order:
-  - security
-  - unit-tests
-  - naming
-
-modes:
-  codegen:
-    include: [security, unit-tests, naming]
-  review:
-    include: [security, naming]
-```
-
-## Examples
-
-### Basic Setup
-
-```bash
-npx ai-vibes init --minimal
-```
-
-### Monorepo
+**Monorepo:**
 
 ```bash
 cd packages/api
-npx ai-vibes init --dir ../../.ai-rules --manifest ../../ai-rules.yaml
+npx ai-vibes init --dir ../../.ai-rules --manifest ../../ai-rules.json
 ```
 
-### Custom Location
+**Custom location:**
 
 ```bash
 npx ai-vibes init --dir .github/ai-guidelines
 ```
 
-## FAQ
+**CI/CD (skip prompts):**
 
-**Do I need to install this?**  
-No, use `npx ai-vibes init`. One command, zero commitment. Like a coding one-night stand, but productive.
+```bash
+npx ai-vibes init --minimal --dir rules --manifest rules.json --force
+```
 
-**Can I customize the templates?**  
-Yes! That's literally the entire point. These are starting points, not commandments carved in stone.
-
-**Can I add more rules?**  
-Absolutely. Got opinions about how semicolons should be used? Write a rule. Passionate about proper emoji usage in commit messages? Add it to the manifest.
-
-**Should I commit these files?**  
-Yes! Version control means time travel, and future-you will thank past-you for documenting these decisions.
-
-**Does this work with [my AI tool]?**  
-If your AI can read Markdown (spoiler: they all can), then yes. We're tool-agnostic. Bring your favorite AI, we'll provide the guidelines.
-
-## Contributing
-
-Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md).
-
-## License
-
-MIT
+</details>
 
 ---
 
 **Repository:** https://github.com/HelpBits/ai-vibes  
-**Version:** 1.1.1
+**Package:** https://www.npmjs.com/package/ai-vibes  
+**Version:** 1.1.1  
+**License:** MIT

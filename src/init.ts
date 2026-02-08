@@ -145,9 +145,16 @@ export async function init(options: InitOptions): Promise<void> {
 
   // Print sponsor message on success
   if (results.some(r => r.status === 'created' || r.status === 'overwritten')) {
-    console.log('\n✨ Enjoying ai-vibes? Know a better format for steering files? Have ideas?');
-    console.log('   Contributions welcome! Or just buy me a coffee ☕');
-    console.log('   https://www.buymeacoffee.com/helpbits');
+    console.log('');
+    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+    console.log('🎉  Success! Just saved you ~30 minutes of template hell.');
+    console.log('');
+    console.log('    Made your day better? Buy me a coffee! ☕');
+    console.log('    👉  https://www.buymeacoffee.com/helpbits');
+    console.log('');
+    console.log('    (I promise to use it for coffee. Or debugging at 3am.)');
+    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+    console.log('');
   }
 }
 
