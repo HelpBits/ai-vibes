@@ -19,6 +19,12 @@
       "modes": ["codegen", "review"]
     },
     {
+      "id": "maintainability",
+      "filename": "maintainability.md",
+      "minimal": true,
+      "modes": ["codegen", "review"]
+    },
+    {
       "id": "architecture",
       "filename": "architecture.md",
       "minimal": false,

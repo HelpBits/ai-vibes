@@ -6,77 +6,38 @@ Define standards for designing APIs (REST, GraphQL, internal modules).
 
 ## Do
 
-- **Use RESTful conventions** – GET (read), POST (create), PUT/PATCH (update), DELETE
-- **Version your API** – /v1/, /v2/, or header-based versioning
-- **Use plural nouns** – `/users`, `/posts`, not `/user`, `/post`
-- **Return proper HTTP status codes** – 200 success, 201 created, 400 bad request, 404 not found, 500 error
-- **Include pagination** – for list endpoints (limit, offset or cursor)
-- **Validate inputs** – return 400 with clear error messages
-- **Use consistent naming** – camelCase or snake_case, pick one
-- **Include timestamps** – createdAt, updatedAt for resources
-- **Document your API** – OpenAPI/Swagger specs
-- **Handle errors gracefully** – return error objects with code and message
+- **Version your API** – /v1/, /v2/, or header-based; decide and be consistent
+- **Use consistent naming** – camelCase or snake_case across all endpoints; pick one
+- **Include pagination** – for all list endpoints; use limit/offset or cursor
+- **Document your API** – maintain an OpenAPI/Swagger spec
 
 ## Don't
 
-- **Don't use verbs in URLs** – use HTTP methods instead
-- **Don't expose internal IDs** – use UUIDs or opaque identifiers
-- **Don't return different structures** – for same endpoint in different states
-- **Don't forget rate limiting** – protect against abuse
+- **Don't return different structures** – same endpoint must always return the same shape
+- **Don't break backward compatibility** – add a new version instead
 - **Don't expose stack traces** – in production error responses
-- **Don't break backward compatibility** – without versioning
-- **Don't use GET for mutations** – GET should be idempotent
 
-## Examples
+## Response formats
 
-### ✅ Good: RESTful design
+Use consistent shapes across all endpoints:
 
-```
-GET    /v1/users          # List users
-GET    /v1/users/123      # Get user
-POST   /v1/users          # Create user
-PATCH  /v1/users/123      # Update user
-DELETE /v1/users/123      # Delete user
-```
-
-### ❌ Bad: Non-RESTful
-
-```
-GET  /getUsers
-POST /createUser
-POST /deleteUser
-```
-
-### ✅ Good: Error response
+**Error:**
 
 ```json
 {
   "error": {
     "code": "INVALID_EMAIL",
-    "message": "Email address is not valid",
+    "message": "Email is not valid",
     "field": "email"
   }
 }
 ```
 
-### ❌ Bad: Vague error
+**Paginated list:**
 
 ```json
 {
-  "error": "Bad request"
-}
-```
-
-### ✅ Good: Pagination
-
-```json
-{
-  "data": [...],
-  "pagination": {
-    "total": 1000,
-    "page": 1,
-    "pageSize": 20,
-    "totalPages": 50
-  }
+  "data": [],
+  "pagination": { "total": 1000, "page": 1, "pageSize": 20, "totalPages": 50 }
 }
 ```

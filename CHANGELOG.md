@@ -5,6 +5,22 @@ All notable changes to ai-vibes will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2026-02-21
+
+### Added
+
+- **Maintainability rules** - New default template covering clean code principles: small functions, guard clauses, named constants, dead code removal, and Given/When/Then test structure
+
+### Improved
+
+- **All templates** - Optimized for AI consumption: removed redundant rules, vague guidance, and framework-specific content; every rule now provides actionable signal
+
+### Fixed
+
+- **CLI description** - Corrected `vibes.yaml` reference to `vibes.json`
+- **Generator** - Now auto-discovers templates from `rules.json`; no manual script edits needed when adding new templates
+- **CONTRIBUTING.md** - Corrected repository URL
+
 ## [1.1.2] - 2026-02-07
 
 ### Improved
