@@ -10,7 +10,7 @@ Be respectful, inclusive, and constructive in all interactions.
 
 ### Reporting Bugs
 
-1. Check if the bug has already been reported in [Issues](https://github.com/ai-vibes/ai-vibes/issues)
+1. Check if the bug has already been reported in [Issues](https://github.com/HelpBits/ai-vibes/issues)
 2. If not, create a new issue with:
    - Clear description of the problem
    - Steps to reproduce

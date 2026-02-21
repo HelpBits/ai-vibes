@@ -107,23 +107,6 @@ If your AI can read Markdown (spoiler: they all can), then yes. Tool-agnostic by
 **Why JSON by default?**  
 Clickable file paths in VS Code. But YAML works too if you're into that.
 
-**Will you actually use my coffee money for coffee?**  
-Yes. And open source development. Which requires coffee. It's a virtuous cycle.
-
-## Buy Me a Coffee? ☕
-
-**Plot twist:** This tool saved you from writing 11 markdown files by hand.
-
-That's at least 30 minutes you didn't spend googling "security best practices example markdown."
-
-If ai-vibes made your life easier:
-
-- ☕ [Buy me a coffee](https://www.buymeacoffee.com/helpbits) - Fuels more open source
-- ⭐ Star the repo - Makes me unreasonably happy
-- 🐦 Share it - Help other devs suffering from inconsistent AI code
-
-No pressure though. The tool is free forever. Unlike coffee. Which is why I'm asking. 😅
-
 ## Contributing
 
 Know a better format? Have ideas? Found a bug?
@@ -192,7 +175,7 @@ your-project/
 </details>
 
 <details>
-<summary><b>Manifest Format Example</b></summary>
+<summary><b>Manifest Format</b></summary>
 
 ```json
 {
@@ -217,6 +200,23 @@ your-project/
   }
 }
 ```
+
+**Fields:**
+
+- `rules` — map of rule IDs to markdown file paths
+- `order` — priority order in which rules are applied
+- `modes` — named subsets of rules for different AI tasks
+
+**Built-in modes** (customize freely):
+| Mode | Use for |
+|---|---|
+| `codegen` | Writing new code |
+| `review` | Reviewing or refactoring code |
+| `test` | Writing or updating tests |
+| `docs` | Writing documentation |
+| `ops` | Infrastructure and deployment tasks |
+
+Reference a mode when prompting your AI: _"Use codegen mode from vibes.json."_
 
 </details>
 
@@ -248,5 +248,5 @@ npx ai-vibes init --minimal --dir rules --manifest rules.json --force
 
 **Repository:** https://github.com/HelpBits/ai-vibes  
 **Package:** https://www.npmjs.com/package/ai-vibes  
-**Version:** 1.1.1  
+**Version:** 1.1.2  
 **License:** MIT

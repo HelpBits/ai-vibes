@@ -1,6 +1,6 @@
 {
   "name": "ai-vibes",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A tiny CLI that initializes a standard, repo-local AI steering manifest and rule documents",
   "type": "module",
   "main": "dist/cli.js",

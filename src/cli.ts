@@ -12,7 +12,7 @@ program
 
 program
   .command('init')
-  .description('Initialize vibes.yaml and starter rule documents')
+  .description('Initialize vibes.json and starter rule documents')
   .option('--force', 'Overwrite existing files', false)
   .option('--minimal', 'Create minimal starter set (3 essential files: security, unit-tests, naming)', false)
   .option('--dir <name>', 'Directory name for rule documents')

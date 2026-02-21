@@ -13,8 +13,10 @@ Define Git commit and branch standards for AI-generated code changes.
 - **Test before committing** – ensure code works
 - **Write commit body** – for complex changes, explain why
 - **Reference issues** – "Fixes #123" in commit message
-- **Squash before merge** – keep main branch clean (if team convention)
-- **Pull before push** – avoid merge conflicts
+- **Open a PR before merging** – every change gets a review, no direct merges to main
+- **Use draft PRs for WIP** – signal the work isn't ready without blocking the branch
+- **Rebase before push** – use `git pull --rebase` to avoid unnecessary merge commits
+- **Agree on a merge strategy** – squash, rebase, or merge commit; pick one and stick to it
 - **Use feature branches** – never commit directly to main
 
 ## Don't
@@ -27,54 +29,18 @@ Define Git commit and branch standards for AI-generated code changes.
 - **Don't rewrite public history** – no force push to main/shared branches
 - **Don't make giant commits** – breaks down to reviewable chunks
 
-## Examples
+## Commit Format
 
-### ✅ Good: Conventional commit
-
-```
-feat: add user authentication with JWT
-
-Implements login, logout, and token refresh endpoints.
-Uses bcrypt for password hashing and validates tokens
-on protected routes.
-
-Fixes #45
-```
-
-### ❌ Bad: Vague message
+Use conventional commits. This enables automated changelogs and version bumps.
 
 ```
-updated stuff
+<type>(<optional scope>): <short summary>
+
+<body: explain why, not what — for non-trivial changes>
+
+<footer: Fixes #123, Breaking changes, etc.>
 ```
 
-### ✅ Good: Branch naming
+**Types:** `feat` | `fix` | `refactor` | `perf` | `test` | `docs` | `style` | `ci` | `build` | `chore` | `revert`
 
-```
-feature/user-authentication
-fix/login-button-spacing
-refactor/api-client-structure
-docs/update-readme
-```
-
-### ❌ Bad: Branch naming
-
-```
-my-branch
-test
-new-stuff
-```
-
-### Conventional Commit Types
-
-- `feat:` New feature
-- `fix:` Bug fix
-- `docs:` Documentation
-- `style:` Formatting, no code change
-- `refactor:` Code restructuring
-- `test:` Adding tests
-- `chore:` Maintenance tasks
-- `perf:` Performance improvement
-
-```
-
-```
+**Branch names:** `<type>/<short-description>` — e.g. `feature/user-auth`, `fix/login-redirect`, `refactor/api-client`
