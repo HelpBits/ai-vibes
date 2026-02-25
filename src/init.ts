@@ -147,12 +147,10 @@ export async function init(options: InitOptions): Promise<void> {
   if (results.some(r => r.status === 'created' || r.status === 'overwritten')) {
     console.log('');
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-    console.log('🎉  Success! Just saved you ~30 minutes of template hell.');
+    console.log('🎉  Done! ~30 minutes of setup work: gone.');
     console.log('');
-    console.log('    Made your day better? Buy me a coffee! ☕');
-    console.log('    👉  https://www.buymeacoffee.com/helpbits');
-    console.log('');
-    console.log('    (I promise to use it for coffee. Or debugging at 3am.)');
+    console.log('    Edit the files to match your actual standards,');
+    console.log('    commit them, and watch your AI finally fall in line.');
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
     console.log('');
   }

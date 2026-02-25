@@ -28,7 +28,7 @@ npx ai-vibes init --manifest vibes.yaml
 
 **Requirements:** Node.js 18+
 
-> 🎉 **Saved you 30 minutes?** This tool is free, but coffee isn't. If ai-vibes made your day better, [buy me a coffee ☕](https://www.buymeacoffee.com/helpbits). I promise to use it for actual coffee (or debugging at 3am, which requires coffee).
+> This tool runs on caffeine — if it saved you some time, [my coffee fund is always open ☕](https://www.buymeacoffee.com/helpbits).
 
 ## What You Get
 
@@ -248,5 +248,5 @@ npx ai-vibes init --minimal --dir rules --manifest rules.json --force
 
 **Repository:** https://github.com/HelpBits/ai-vibes  
 **Package:** https://www.npmjs.com/package/ai-vibes  
-**Version:** 1.1.2  
+**Version:** 1.2.0  
 **License:** MIT
