@@ -248,5 +248,5 @@ npx ai-vibes init --minimal --dir rules --manifest rules.json --force
 
 **Repository:** https://github.com/HelpBits/ai-vibes  
 **Package:** https://www.npmjs.com/package/ai-vibes  
-**Version:** 1.2.0  
+**Version:** 1.2.1  
 **License:** MIT
