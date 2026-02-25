@@ -149,8 +149,12 @@ export async function init(options: InitOptions): Promise<void> {
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
     console.log('🎉  Done! ~30 minutes of setup work: gone.');
     console.log('');
-    console.log('    Edit the files to match your actual standards,');
-    console.log('    commit them, and watch your AI finally fall in line.');
+    console.log('    We both know the pain of AI that ignores your rules —');
+    console.log('    the "why did it do that?" moments that ruin a perfectly');
+    console.log('    good afternoon. Hopefully this puts an end to that.');
+    console.log('');
+    console.log('☕  If it helped, a coffee keeps more tools like this coming:');
+    console.log('    https://www.buymeacoffee.com/helpbits');
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
     console.log('');
   }
