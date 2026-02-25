@@ -22,7 +22,19 @@
       "id": "maintainability",
       "filename": "maintainability.md",
       "minimal": true,
-      "modes": ["codegen", "review"]
+      "modes": ["codegen", "review", "refactor"]
+    },
+    {
+      "id": "refactoring",
+      "filename": "refactoring.md",
+      "minimal": false,
+      "modes": ["refactor"]
+    },
+    {
+      "id": "logging",
+      "filename": "logging.md",
+      "minimal": false,
+      "modes": ["codegen", "review", "ops"]
     },
     {
       "id": "architecture",

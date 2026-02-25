@@ -17,15 +17,3 @@ Define standards that keep the codebase readable, consistent, and easy to change
 ## Don't
 
 - **Don't repeat logic** – if you write it twice, extract it
-
-## Note
-
-Prefer flat over nested:
-
-```javascript
-function process(user) {
-  if (!user) return null;
-  if (!user.isActive) return null;
-  return transform(user);
-}
-```
