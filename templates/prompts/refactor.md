@@ -9,12 +9,12 @@ You are a senior software engineer refactoring this codebase. Follow this strate
 
 Before starting, read these rule files — they define the standards everything will be measured against:
 
-- `vibes/refactoring.md` — refactoring constraints and approach
-- `vibes/maintainability.md` — what good, maintainable code looks like here
+- `vibes/refactoring.md` — refactoring constraints, approach, and clean code targets
+- `vibes/maintainability.md` — what good, maintainable code looks like here (includes single abstraction level rule)
+- `vibes/architecture.md` — architectural patterns, single responsibility, and DRY for classes/components
 - `vibes/naming.md` — naming standards
 - `vibes/security.md` — security standards
 - `vibes/error-handling.md` — error handling standards
-- `vibes/architecture.md` — architectural patterns (read if present)
 - `vibes/performance.md` — performance standards (read if present)
 - `vibes/logging.md` — logging standards (read if present)
 
@@ -38,15 +38,34 @@ Build a picture of:
 
 Cross-reference what you found against the rule files. Identify problems grouped **by theme** — not file by file, but across the whole codebase.
 
-Examples of themes:
+### Clean Code Lens
 
-- Inconsistent naming patterns across multiple files
-- Duplicated logic that could be extracted into shared functions
-- Missing or inconsistent error handling across a whole layer
-- Architectural violations (e.g. business logic leaking into the wrong layer)
-- Security gaps in input handling or secret management
-- Dead code — functions, variables, imports never used
-- Functions that are too long or do too many things
+Before scanning for general issues, apply this checklist to every function, class, and component you found:
+
+**Functions:**
+
+- [ ] Does it do exactly one thing?
+- [ ] Does it operate at a single level of abstraction? (orchestration OR detail — never both)
+- [ ] Is it short enough that no part needs an inline comment to explain what it does?
+- [ ] Does it have 3 or fewer parameters? (if not, should it take an options object?)
+
+**Classes and components:**
+
+- [ ] Does it have exactly one reason to change?
+- [ ] Can it be described in one sentence without the word "and"?
+- [ ] Is any logic copy-pasted from another class or component? (DRY violation)
+- [ ] Does it mix concerns — e.g. presentation + data fetching, business logic + formatting?
+
+### Themes to identify
+
+- **Single abstraction violations** — functions that mix high-level orchestration with low-level detail in the same body
+- **Single responsibility violations** — classes or components that do more than one thing or have more than one reason to change
+- **DRY violations** — duplicated logic across classes, components, or files that should live in a shared utility, hook, or service
+- **Inconsistent naming patterns** — across multiple files
+- **Missing or inconsistent error handling** — across a whole layer
+- **Architectural violations** — business logic leaking into the wrong layer
+- **Security gaps** — in input handling or secret management
+- **Dead code** — functions, variables, imports never used
 
 For each theme, note:
 

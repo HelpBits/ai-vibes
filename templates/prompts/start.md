@@ -35,8 +35,8 @@ Read `vibes/code-review.md`, `vibes/security.md`, `vibes/error-handling.md`, `vi
 Flag every issue as: rule violated → risk → suggested fix. Skip style — let linters handle it.
 
 **5. ✍️ Write code**
-Read `vibes/naming.md`, `vibes/architecture.md`, `vibes/security.md`, `vibes/error-handling.md`, `vibes/logging.md`, `vibes/unit-tests.md`.
-Write code and tests together. Match existing patterns before introducing anything new.
+Read `vibes/naming.md`, `vibes/architecture.md`, `vibes/maintainability.md`, `vibes/security.md`, `vibes/error-handling.md`, `vibes/logging.md`, `vibes/unit-tests.md`.
+Write code and tests together. Match existing patterns before introducing anything new. Every function must operate at a single level of abstraction. Every class or component must have a single responsibility and share logic via utilities rather than duplication.
 
 **6. 🧪 Write tests**
 Read `vibes/unit-tests.md`, `vibes/security.md`.

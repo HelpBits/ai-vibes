@@ -5,6 +5,16 @@ All notable changes to ai-vibes will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] - 2026-02-26
+
+### Improved
+
+- **`maintainability.md`** — Added single level of abstraction rule for functions: a function should either orchestrate or implement, never both
+- **`architecture.md`** — Added single responsibility rule for classes/components (one reason to change); added DRY rule at the class/component level
+- **`refactoring.md`** — Added explicit refactoring targets for abstraction level flattening and splitting multi-responsibility classes/components
+- **`prompts/refactor.md`** — Phase 2 now includes a Clean Code Lens checklist applied to every function, class, and component; themes updated to call out single abstraction, single responsibility, and DRY violations as first-class items; `architecture.md` promoted from optional to required reading
+- **`prompts/start.md`** — Write code strategy now includes `maintainability.md` and enforces single abstraction and single responsibility constraints
+
 ## [1.2.0] - 2026-02-21
 
 ### Added

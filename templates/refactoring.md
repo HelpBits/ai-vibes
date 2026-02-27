@@ -11,6 +11,8 @@ Define how to safely clean up a codebase without breaking behavior or overloadin
 - **Separate refactoring from behavior changes** – never mix a rename, extract, or restructure with a feature or fix; keep them in separate commits
 - **Check all callsites before renaming** – if a name is used in more than one place, verify every reference before changing it
 - **Extract incrementally** – one concept per extraction; don't chain multiple refactors in a single step
+- **Flatten abstraction levels in functions** – if a function mixes high-level orchestration with low-level implementation detail, extract the detail into a named helper; the function should read like a table of contents, not an implementation
+- **Split classes and components with multiple responsibilities** – if a class or component has more than one reason to change, split it one responsibility at a time; this is the highest-risk refactor and must never be done in a single pass
 
 ## Don't
 
