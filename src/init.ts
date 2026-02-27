@@ -1,7 +1,7 @@
 import { writeFile, mkdir, access } from 'fs/promises';
 import { join } from 'path';
 import { createInterface } from 'readline';
-import { generateManifest, getRuleTemplates } from './templates.js';
+import { generateManifest, getRuleTemplates, getPromptTemplates } from './templates.js';
 
 export interface InitOptions {
   force: boolean;
@@ -22,7 +22,7 @@ function prompt(question: string, defaultValue: string): Promise<string> {
   });
 
   return new Promise((resolve) => {
-    rl.question(`${question} (default: ${defaultValue}): `, (answer) => {
+    rl.question(`${question}\n  Press Enter for default (${defaultValue}): `, (answer) => {
       rl.close();
       resolve(answer.trim() || defaultValue);
     });
@@ -70,10 +70,10 @@ export async function init(options: InitOptions): Promise<void> {
   const { force, minimal } = options;
 
   // Prompt for directory name if not provided
-  const dir = options.dir || await prompt('Directory name for rule documents', 'vibes');
+  const dir = options.dir || await prompt('📁 Folder name where rule files will be created (e.g. vibes, .ai, docs/ai)', 'vibes');
 
   // Prompt for manifest filename if not provided
-  const manifest = options.manifest || await prompt('Manifest filename', 'vibes.json');
+  const manifest = options.manifest || await prompt('📄 Manifest filename — this is the config file your AI reads to know the rules (must end in .json, .yaml, or .yml)', 'vibes.json');
 
   // Validate inputs
   validateOptions({ force, minimal, dir, manifest });
@@ -140,6 +140,38 @@ export async function init(options: InitOptions): Promise<void> {
     }
   }
 
+  // Create prompts directory and write prompt files
+  const promptsDir = join(rulesDir, 'prompts');
+  try {
+    await mkdir(promptsDir, { recursive: true });
+  } catch (error) {
+    throw new Error(`Failed to create prompts directory: ${error instanceof Error ? error.message : 'Unknown error'}`);
+  }
+
+  const prompts = getPromptTemplates();
+
+  for (const promptTemplate of prompts) {
+    const filePath = join(promptsDir, promptTemplate.filename);
+    const fileAlreadyExists = await fileExists(filePath);
+
+    if (!fileAlreadyExists || force) {
+      try {
+        await writeFile(filePath, promptTemplate.content, 'utf-8');
+        results.push({
+          path: join(dir, 'prompts', promptTemplate.filename),
+          status: fileAlreadyExists ? 'overwritten' : 'created',
+        });
+      } catch (error) {
+        throw new Error(`Failed to write prompt file '${promptTemplate.filename}': ${error instanceof Error ? error.message : 'Unknown error'}`);
+      }
+    } else {
+      results.push({
+        path: join(dir, 'prompts', promptTemplate.filename),
+        status: 'skipped',
+      });
+    }
+  }
+
   // Print summary
   printSummary(results);
 
@@ -152,6 +184,16 @@ export async function init(options: InitOptions): Promise<void> {
     console.log('    We both know the pain of AI that ignores your rules —');
     console.log('    the "why did it do that?" moments that ruin a perfectly');
     console.log('    good afternoon. Hopefully this puts an end to that.');
+    console.log('');
+    console.log('💬  Two ways to put this to work:');
+    console.log('');
+    console.log('    1. Guided workflows (audit, refactor, document, review, write code):');
+    console.log('       Paste into any AI →');
+    console.log(`         Load ${dir}/prompts/start.md and follow the instructions in it.`);
+    console.log('');
+    console.log('    2. Rules-aware coding (AI follows your rules while you work normally):');
+    console.log('       Tell your AI →');
+    console.log(`         Load ${manifest} — it defines how to work in this repo.`);
     console.log('');
     console.log('☕  If it helped, a coffee keeps more tools like this coming:');
     console.log('    https://www.buymeacoffee.com/helpbits');

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { readFileSync, writeFileSync } from "fs";
+import { readFileSync, writeFileSync, readdirSync, existsSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 
@@ -176,5 +176,45 @@ export function getRuleTemplates(minimal: boolean): RuleTemplate[] {
 }
 `;
 
+// ============================================================================
+// PROMPT TEMPLATES
+// ============================================================================
+
+const PROMPTS_DIR = join(TEMPLATES_DIR, "prompts");
+const promptFiles = existsSync(PROMPTS_DIR)
+  ? readdirSync(PROMPTS_DIR).filter((f) => f.endsWith(".md"))
+  : [];
+
+output += `// ============================================================================
+// PROMPT TEMPLATES
+// ============================================================================
+
+`;
+
+for (const filename of promptFiles) {
+  const content = readFileSync(join(PROMPTS_DIR, filename), "utf-8");
+  const varName =
+    "prompt_" + filename.replace(".md", "").replace(/-/g, "_") + "_md";
+  output += `const ${varName} = ${JSON.stringify(content)};\n\n`;
+}
+
+output += `const PROMPT_TEMPLATES: Record<string, string> = {\n`;
+for (const filename of promptFiles) {
+  const varName =
+    "prompt_" + filename.replace(".md", "").replace(/-/g, "_") + "_md";
+  output += `  '${filename}': ${varName},\n`;
+}
+output += `};\n\n`;
+
+output += `export function getPromptTemplates(): RuleTemplate[] {
+  return Object.entries(PROMPT_TEMPLATES).map(([filename, content]) => ({
+    filename,
+    content,
+  }));
+}
+`;
+
 writeFileSync(OUTPUT_FILE, output);
-console.log("✓ Generated src/templates.ts from templates/*.md");
+console.log(
+  "✓ Generated src/templates.ts from templates/*.md and templates/prompts/*.md",
+);
